@@ -126,5 +126,7 @@ function spongeParsedMarkdown(parsedMD, urlMD) {
 
 module.exports = {
     spongeParsedMarkdown: spongeParsedMarkdown,
-    parsedMock: parsedMock
+    parsedMock: parsedMock,
+    groupWeeks: groupWeeks,
+    seperateSyllabusWeeks: seperateSyllabusWeeks
 };
