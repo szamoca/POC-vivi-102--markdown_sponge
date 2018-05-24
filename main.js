@@ -122,5 +122,9 @@ function spongeParsedMarkdown(parsedMD, urlMD) {
     }    
 }
 
-console.dir(spongeParsedMarkdown(parsedMock, 'https://raw.githubusercontent.com/green-fox-academy/mock-teaching-materials/master/syllabus/modules/foundation/javascript.md?token=AhHGaKU9k9EPK_IdJr5LjY0yvAP21g6Sks5bBtJTwA%3D%3D'), { depth: null });
-// console.dir(getWorkshopsFromTable((mdi.parse(fs.readFileSync('table.md', 'utf8'), { depth: null }))));
+// console.dir(spongeParsedMarkdown(parsedMock, 'https://raw.githubusercontent.com/green-fox-academy/mock-teaching-materials/master/syllabus/modules/foundation/javascript.md?token=AhHGaKU9k9EPK_IdJr5LjY0yvAP21g6Sks5bBtJTwA%3D%3D'), { depth: null });
+
+module.exports = {
+    spongeParsedMarkdown: spongeParsedMarkdown,
+    parsedMock: parsedMock
+};
