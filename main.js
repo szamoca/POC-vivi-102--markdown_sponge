@@ -30,14 +30,16 @@ function getSyllabusDescription(parsedMD) {
     }
 
     if (parsedMD[0].content !== '') {
-        return parsedMD[0].content + '<br>' + getSyllabusDescription(parsedMD.slice(1));
+        return parsedMD[0].content + getSyllabusDescription(parsedMD.slice(1));
+    } else if (parsedMD[0].type.includes('open')) {
+        return `<${parsedMD[0].tag}>` + getSyllabusDescription(parsedMD.slice(1));
     } else {
-        return getSyllabusDescription(parsedMD.slice(1));
+        return `</${parsedMD[0].tag}>` + getSyllabusDescription(parsedMD.slice(1));
     }
 }
 
 function seperateSyllabusWeeks(parsedMD) {
-    let tempMD = parsedMD;
+    let tempMD = parsedMD.slice(0);
     
     while (tempMD[0].tag !== 'h2') {
         tempMD.shift();
@@ -52,9 +54,11 @@ function getWeekDescription(weekMD) {
     }
 
     if (weekMD[0].content !== '') {
-        return weekMD[0].content + '<br>' + getWeekDescription(weekMD.slice(1));
+        return weekMD[0].content + getWeekDescription(weekMD.slice(1));
+    } else if (weekMD[0].type.includes('open')) {
+        return `<${weekMD[0].tag}>` + getWeekDescription(weekMD.slice(1));
     } else {
-        return getWeekDescription(weekMD.slice(1));
+        return `</${weekMD[0].tag}>` + getWeekDescription(weekMD.slice(1));
     }
 }
 
@@ -122,11 +126,12 @@ function spongeParsedMarkdown(parsedMD, urlMD) {
     }    
 }
 
-// console.dir(spongeParsedMarkdown(parsedMock, 'https://raw.githubusercontent.com/green-fox-academy/mock-teaching-materials/master/syllabus/modules/foundation/javascript.md?token=AhHGaKU9k9EPK_IdJr5LjY0yvAP21g6Sks5bBtJTwA%3D%3D'), { depth: null });
+console.dir(spongeParsedMarkdown(parsedMock, 'https://raw.githubusercontent.com/green-fox-academy/mock-teaching-materials/master/syllabus/modules/foundation/javascript.md?token=AhHGaKU9k9EPK_IdJr5LjY0yvAP21g6Sks5bBtJTwA%3D%3D'), { depth: null });
 
 module.exports = {
     spongeParsedMarkdown: spongeParsedMarkdown,
     parsedMock: parsedMock,
     groupWeeks: groupWeeks,
-    seperateSyllabusWeeks: seperateSyllabusWeeks
+    seperateSyllabusWeeks: seperateSyllabusWeeks,
+    seperateSyllabusIntro: seperateSyllabusIntro
 };
