@@ -10,7 +10,7 @@ const parsedMock = mdi.parse(rawMock);
 
 function seperateSyllabusIntro(parsedMD) {
     let syllabusIntro = [];
-    let tempMD = parsedMD;
+    let tempMD = parsedMD.slice(0);
     
     while (tempMD[0].tag !== 'h2') {
         syllabusIntro.push(tempMD[0]);
@@ -133,5 +133,6 @@ module.exports = {
     parsedMock: parsedMock,
     groupWeeks: groupWeeks,
     seperateSyllabusWeeks: seperateSyllabusWeeks,
-    seperateSyllabusIntro: seperateSyllabusIntro
+    seperateSyllabusIntro: seperateSyllabusIntro,
+    getTableFromWeek: getTableFromWeek
 };
